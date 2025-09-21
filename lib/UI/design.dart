@@ -28,6 +28,7 @@ class AppImages {
 
   static const String Defult_backgroundImage = 'assets/images/Background.jpg';
   static const String onboarding_logo = 'assets/images/onboarding_logo.png';
+  static const String hadethItemBackground = 'assets/images/hadeth_item_bg.png';
 }
 
 class AppThemes {
