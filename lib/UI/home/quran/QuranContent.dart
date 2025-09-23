@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
+import '../../Chapter.dart';
 import '../../design.dart';
-import '../../sura.dart';
 import 'ChapterRow.dart';
+import 'MostRecentSlider.dart';
 
 class QuranContent extends StatefulWidget {
   const QuranContent({super.key});
@@ -13,9 +14,8 @@ class QuranContent extends StatefulWidget {
 }
 
 class _QuranContentState extends State<QuranContent> {
-  final List<Chapter> chapters = Chapter.getQuranChapter();
+  final List<Chapter> chapters = Chapter.chapters;
   List<Chapter> filterdChapters = [];
-
 
   _QuranContentState() {
     filterdChapters = chapters;
@@ -31,31 +31,22 @@ class _QuranContentState extends State<QuranContent> {
             filterChapters(text.toLowerCase());
           },
           decoration: InputDecoration(
-              hintText: "Search for Chapter",
-              hintStyle: Theme
-                  .of(context)
-                  .textTheme
-                  .titleMedium,
-              prefixIcon: ImageIcon(
-                Svg(
-                  AppImages.ic_Quran,
-                ),
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .primary,
+            hintText: "Search for Chapter",
+            hintStyle: Theme.of(context).textTheme.titleMedium,
+            prefixIcon: ImageIcon(
+              Svg(AppImages.ic_Quran),
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 1,
               ),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Theme
-                        .of(context)
-                        .primaryColor,
-                    width: 1,
-                  )
-              )
+            ),
           ),
         ),
+        MostRecentSlider(),
         Expanded(
           child: ListView.separated(
             itemBuilder: (context, index) {
@@ -79,9 +70,8 @@ class _QuranContentState extends State<QuranContent> {
   void filterChapters(String text) {
     List<Chapter> filterList = [];
     for (int i = 0; i < chapters.length; i++) {
-      if (chapters[i].englishName.toLowerCase().contains(text)
-          || chapters[i].arabicName.toLowerCase().contains(text)
-      ) {
+      if (chapters[i].englishName.toLowerCase().contains(text) ||
+          chapters[i].arabicName.toLowerCase().contains(text)) {
         filterList.add(chapters[i]);
       }
     }

@@ -115,6 +115,7 @@ class Chapter {
     "الفلق",
     "الناس",
   ];
+
   static List<String> englishQuranSurahs = [
     "Al-Fatiha",
     "Al-Baqarah",
@@ -231,7 +232,8 @@ class Chapter {
     "Al-Falaq",
     "An-Nas",
   ];
-  static List<String> AyaNumber = [
+
+  static List<String> ayaNumbers = [
     '7',
     '286',
     '200',
@@ -347,28 +349,28 @@ class Chapter {
     '5',
     '6',
   ];
+
   String arabicName;
   String englishName;
   String versesNumber;
   int chapterIndex;
 
-  Chapter(
-    this.arabicName,
-    this.englishName,
-    this.versesNumber,
-    this.chapterIndex,
-  );
+  Chapter(this.arabicName, this.englishName, this.versesNumber,
+      this.chapterIndex);
 
-  static List<Chapter> getQuranChapter() {
-    List<Chapter> Chapters = List.generate(
+  static List<Chapter> chapters = getQuranChapters();
+  static List<Chapter> visitedChapters = [];
+
+  static List<Chapter> getQuranChapters() {
+    return List.generate(
       114,
-      (index) => Chapter(
+          (index) =>
+          Chapter(
         arabicAuranSuras[index],
         englishQuranSurahs[index],
-        AyaNumber[index],
+            ayaNumbers[index],
         index + 1,
       ),
     );
-    return Chapters;
   }
 }
